@@ -1,0 +1,70 @@
+<html>
+<head>
+<title>Spirograph Generator in JavaScript</title>
+<meta http-equiv="Page-Enter" content="revealTrans(Duration=1.0,Transition=23)">
+<meta http-equiv="Page-Enter" content="blendTrans(Duration=1.0)">
+<meta http-equiv="Page-Exit" content="revealTrans(Duration=1.0,Transition=23)">
+<noscript style="font-family:Lucida Sans Unicode; font-size: 10pt; color: Sienna ;"> This Application Requires JavaScript Plug-in which has to be initialized or installed. It seems that your OS does not have the Plug-in Installed or has been disabled by you. Please Enable/Install the Plug-in. If you have the plug-in and is currently disabled, right-click on the light yellow bar above, Chose "Allow Blocked Content..." and then click "Yes" from the consecutive dialog box, you should see the Application running, or else install the plug-in from Internet/Reliable Disc.</noscript> 
+<script language="JavaScript">
+dots=2;
+speed=3;
+radius=75;
+function paint()
+{
+a=1;
+t="";
+while(a<=dots)
+{
+t+="<span id='wormX"+a+"' style='position:absolute;top:10;left:10;color:Skyblue;font-size:1em;font-family:Tahoma;margin:0;'><b>SUCCESS</b></span>";
+t+="<span id='worma"+a+"' style='position:absolute;top:10;left:10;color:Red;font-size:1em;font-family:Tahoma;margin:0;'><b>HARDLE</b></span>";
+t+="<span id='wormb"+a+"' style='position:absolute;top:10;left:10;color:Lime;font-size:1em;font-family:Tahoma;margin:0;'><b>KEY STEPS</b></span>";
+t+="<span id='wormc"+a+"' style='position:absolute;top:10;left:10;color:Yellow;font-size:1em;font-family:Tahoma;margin:0;'><b>U</b></span>";
+a++;
+}
+document.getElementById("Pad").innerHTML=t;
+spirograph();
+}
+document.onload=setTimeout("paint()",32);
+x=-50;y=-50;
+function track()
+{
+x=window.event.x+document.documentElement.scrollLeft;
+y=window.event.y+document.documentElement.scrollTop;
+}
+document.onmousemove=track;
+X=0,Y=0,axis=0;
+function new_coord(x1,y1)
+{
+X=speed*Math.sin(Math.atan2(y-y1,x-x1));
+Y=speed*Math.sin(Math.atan2(x-x1,y-y1));
+axis=Math.atan2(x-x1,y-y1);
+}
+b=dots-1;
+c=dots;
+d=dots-Math.ceil(dots*0.75);
+j=0;
+function spirograph()
+{
+newx=(parseFloat(document.getElementById("wormX"+c).style.left));
+newy=(parseFloat(document.getElementById("wormX"+c).style.top));
+new_coord(newx,newy);
+document.getElementById("worma"+b).style.top=(parseFloat(document.getElementById("wormX"+c).style.top)+X+Math.sin(j)*radius);
+document.getElementById("wormb"+b).style.top=(parseFloat(document.getElementById("wormX"+c).style.top)+X+Math.sin(j+Math.PI/3*2)*radius);
+document.getElementById("wormc"+b).style.top=(parseFloat(document.getElementById("wormX"+c).style.top)+X+Math.sin(j+Math.PI/3*4)*radius);
+document.getElementById("wormX"+b).style.top=(parseFloat(document.getElementById("wormX"+c).style.top)+X);
+new_coord(newx,newy);
+document.getElementById("worma"+b).style.left=(parseFloat(document.getElementById("wormX"+c).style.left)+Y+Math.cos(j)*radius);
+document.getElementById("wormb"+b).style.left=(parseFloat(document.getElementById("wormX"+c).style.left)+Y+Math.cos(j+Math.PI/3*2)*radius);
+document.getElementById("wormc"+b).style.left=(parseFloat(document.getElementById("wormX"+c).style.left)+Y+Math.cos(j+Math.PI/3*4)*radius);
+document.getElementById("wormX"+b).style.left=(parseFloat(document.getElementById("wormX"+c).style.left)+Y);
+j+=(1/6);
+b--; if(b<=0) b=dots;
+c--; if(c<=0) c=dots;
+d--; if(d<=0) d=dots;
+setTimeout("spirograph()",32);
+}
+</script>
+</head>
+<body oncontextmenu="return false" onselectstart="return false" oncopy="return false" ondragstart="return false" onfocus="return false" onblur="return false"onhelp="return false" bgcolor="Black" style="cursor:hand;" id="Pad">
+</body>
+</html>
