@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<style>
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+    font-size: 1.5em;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -60px;
+    
+    /* Fade in tooltip - takes 1 second to go from 0% to 100% opac: */
+    opacity: 0;
+    transition: ease-in-out 5s ;
+}
+
+.tooltip:hover .tooltiptext {
+    width: 210px;
+    height: 150px;
+    font-size: 2.5em;
+    color: #383f44;
+    visibility: inherit;
+    opacity: 1;
+    background-image: url("c.jpg");
+}
+.bot{
+    color: #7755aa;
+    margin-top: 5px;
+    font-size: 3em;
+}
+</style>
+<body style="text-align:center;background-image: url(background.jpg)">
+
+<h2 style="font-family:Algerian; font-size: 2em; color: #272ac6;">I HAVE SOME THING TO SAY</h2>
+<p style="font-family:Algerian;font-size: 3em;color: rgb(198, 39, 177);-webkit-margin-top-collapse: discard">Try something new from now</p>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br><br>
+<div class="tooltip">Cursor over me
+  <span class="tooltiptext">Bye Bye 2016</span>
+</div>
+<br>
+<div class="bot"><a href="new.html">"U dare click me"</a></div>
+</body>
+</html>
